@@ -25,7 +25,8 @@ vim.cmd("set ruler")                   -- Show ruler (line, col)
 vim.cmd("set mouse=a")                 -- Enable mouse support
 vim.cmd("set wrap")                    -- Enable line wrapping
 vim.cmd("set scrolloff=5")             -- Keep 5 lines visible when scrolling
-vim.cmd("set showcmd")                 -- Show command in bottom bar
+vim.cmd("set showcmd")                 -- Show typed commands
+vim.cmd("set showcmdloc=statusline")   -- Show commands in status line
 vim.cmd("set laststatus=2")            -- Always show status line
 vim.cmd("set wildmenu")                -- Better auto completion
 vim.cmd("set noswapfile")              -- Disable swap files
@@ -43,6 +44,8 @@ vim.g.mapleader = " "   -- Space as the map leader
 vim.g.maplocalleader = " "  
 vim.g.have_nerd_font = true
 
+-- Enable extended colors
+vim.opt.termguicolors = true
 -- Do not show mode, since it is already shown in the status line
 vim.opt.showmode = false
 -- Save undo history
@@ -66,7 +69,7 @@ vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' }
 
 vim.api.nvim_create_autocmd("TextYankPost", {
     desc = "Highlight when yanking text",
-    group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
+    group = vim.api.nvim_create_augroup("highlight-yank", { clear = true }),
     callback = function()
         vim.highlight.on_yank()
     end,
