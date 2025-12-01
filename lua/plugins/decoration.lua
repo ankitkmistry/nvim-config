@@ -98,7 +98,4 @@ return {
             require("alpha").setup(theme.config)
         end,
     },
-    {
-        "rcarriga/nvim-notify",
-    }
 }

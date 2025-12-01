@@ -34,16 +34,6 @@ return {
                     }
                 )
             })
-
-            -- Set up lspconfig.
-            local capabilities = require('cmp_nvim_lsp').default_capabilities()
-            local lsps = { 'clangd', 'rust_analyzer', 'ruff' }
-            for _, lsp in ipairs(lsps) do
-                vim.lsp.config(lsp, {
-                    capabilities = capabilities
-                })
-                vim.lsp.enable(lsp)
-            end
         end
     }
 }
