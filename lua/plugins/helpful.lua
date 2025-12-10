@@ -1,12 +1,52 @@
 return {
     {
-        "tpope/vim-surround",
-    },
-    {
         "tpope/vim-repeat",
     },
     {
+        "nvim-mini/mini.surround",
+    },
+    {
         "rcarriga/nvim-notify",
+    },
+    {
+        "gelguy/wilder.nvim",
+        dependencies = { "romgrk/fzy-lua-native" },
+        config = function() 
+            local wilder = require('wilder')
+            wilder.setup({
+                modes = {':', '/', '?'},
+                enter_cmdline_enter = 0, -- Press <Tab> to trigger wilder.nvim
+            })
+            -- Disable Python remote plugin
+            wilder.set_option('use_python_remote_plugin', 0)
+
+            wilder.set_option('pipeline', {
+                wilder.branch(
+                    wilder.cmdline_pipeline({
+                        fuzzy = 1,
+                        fuzzy_filter = wilder.lua_fzy_filter(),
+                    }),
+                    wilder.vim_search_pipeline()
+                )
+            })
+
+            wilder.set_option('renderer', wilder.renderer_mux({
+                [':'] = wilder.popupmenu_renderer({
+                    highlighter = wilder.lua_fzy_highlighter(),
+                    left = {
+                        ' ',
+                        wilder.popupmenu_devicons()
+                    },
+                    right = {
+                        ' ',
+                        wilder.popupmenu_scrollbar()
+                    },
+                }),
+                ['/'] = wilder.wildmenu_renderer({
+                    highlighter = wilder.lua_fzy_highlighter(),
+                }),
+            })) 
+        end,
     },
     {
         "MysticalDevil/inlay-hints.nvim",
@@ -24,36 +64,12 @@ return {
         opts = {}, -- for default options, refer to the configuration section for custom setup.
         cmd = "Trouble",
         keys = {
-            {
-                "<leader>xx",
-                "<cmd>Trouble diagnostics toggle<cr>",
-                desc = "Diagnostics (Trouble)",
-            },
-            {
-                "<leader>xX",
-                "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
-                desc = "Buffer Diagnostics (Trouble)",
-            },
-            {
-                "<leader>cs",
-                "<cmd>Trouble symbols toggle focus=false<cr>",
-                desc = "Symbols (Trouble)",
-            },
-            {
-                "<leader>cl",
-                "<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
-                desc = "LSP Definitions / references / ... (Trouble)",
-            },
-            {
-                "<leader>xl",
-                "<cmd>Trouble loclist toggle<cr>",
-                desc = "Location List (Trouble)",
-            },
-            {
-                "<leader>xq",
-                "<cmd>Trouble qflist toggle<cr>",
-                desc = "Quickfix List (Trouble)",
-            },
+            { "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>",                          desc = "Trouble diagnostics", },
+            { "<leader>xX", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",             desc = "Trouble buffer diagnostics", },
+            { "<leader>cs", "<cmd>Trouble symbols toggle focus=false<cr>",                  desc = "Trouble symbols", },
+            { "<leader>cl", "<cmd>Trouble lsp toggle focus=false win.position=right<cr>",   desc = "Trouble definitions, references, ...", },
+            { "<leader>xl", "<cmd>Trouble loclist toggle<cr>",                              desc = "Trouble location list", },
+            { "<leader>xq", "<cmd>Trouble qflist toggle<cr>",                               desc = "Trouble quickfix list", },
         },
     },
     {
@@ -63,7 +79,7 @@ return {
                 enabled = true, -- start auto-save when the plugin is loaded (i.e. when your package manager loads it)
                 execution_message = {
                     message = function() -- message to print on save
-                        return ("AutoSave: saved at " .. vim.fn.strftime("%H:%M:%S"))
+                        return "saved..."
                     end,
                     dim = 0.18, -- dim the color of `message`
                     cleaning_interval = 1250, -- (milliseconds) automatically clean MsgArea after displaying `message`. See :h MsgArea
@@ -76,9 +92,8 @@ return {
                     local fn = vim.fn
                     local utils = require("auto-save.utils.data")
 
-                    if
-                        fn.getbufvar(buf, "&modifiable") == 1 and
-                        utils.not_in(fn.getbufvar(buf, "&filetype"), {}) then
+                    if fn.getbufvar(buf, "&modifiable") == 1 
+                        and utils.not_in(fn.getbufvar(buf, "&filetype"), {}) then
                         return true -- met condition(s), can save
                     end
                     return false -- can't save

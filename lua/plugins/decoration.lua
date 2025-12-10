@@ -1,12 +1,27 @@
 return {
     {
+        "lukas-reineke/indent-blankline.nvim",
+        main = "ibl",
+        ---@module "ibl"
+        ---@type ibl.config
+        opts = {},
+        config = function() 
+            require("ibl").setup {
+                scope = {
+                    show_start = false,
+                    show_end = false,
+                },
+            }
+        end
+    },
+    {
         'nvim-lualine/lualine.nvim',
         dependencies = { 'nvim-tree/nvim-web-devicons' },
         config = function()
             require('lualine').setup ({
                 -- options = { theme = 'gruvbox' }
                 -- options = { theme = 'horizon' }
-                options = { theme = 'catppuccin' }
+                -- options = { theme = 'catppuccin' }
             })
         end
     },
@@ -86,7 +101,16 @@ return {
             })
 
             -- setup must be called before loading
-            vim.cmd.colorscheme "catppuccin"
+            -- vim.cmd.colorscheme "catppuccin"
+        end
+    },
+    {
+        "folke/tokyonight.nvim",
+        lazy = false,
+        priority = 1000,
+        opts = {},
+        config = function() 
+            vim.cmd.colorscheme "tokyonight-night"
         end
     },
     {

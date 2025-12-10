@@ -23,9 +23,6 @@ return {
                 capabilities = cap,
                 settings = {
                     ["rust-analyzer"] = {
-                        checkOnSave = {
-                            command = "clippy",
-                        },
                         inlayHints = {
                             bindingModeHints = { enable = false, },
                             chainingHints = { enable = true, },

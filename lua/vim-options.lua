@@ -44,6 +44,9 @@ vim.g.mapleader = " "   -- Space as the map leader
 vim.g.maplocalleader = " "  
 vim.g.have_nerd_font = true
 
+-- Take confirmation when doing dangerous tasks
+vim.o.confirm = true
+
 -- Enable extended colors
 vim.opt.termguicolors = true
 -- Do not show mode, since it is already shown in the status line
@@ -67,6 +70,7 @@ vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnos
 -- Terminal ones
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
+-- Highlight when yanking (copying) text
 vim.api.nvim_create_autocmd("TextYankPost", {
     desc = "Highlight when yanking text",
     group = vim.api.nvim_create_augroup("highlight-yank", { clear = true }),
