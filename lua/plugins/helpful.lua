@@ -3,10 +3,10 @@ return {
         "tpope/vim-repeat",
     },
     {
-        "nvim-mini/mini.surround",
+        "rcarriga/nvim-notify",
     },
     {
-        "rcarriga/nvim-notify",
+        "dstein64/vim-startuptime",
     },
     {
         "gelguy/wilder.nvim",

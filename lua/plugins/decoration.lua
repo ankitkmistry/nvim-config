@@ -18,11 +18,16 @@ return {
         'nvim-lualine/lualine.nvim',
         dependencies = { 'nvim-tree/nvim-web-devicons' },
         config = function()
-            require('lualine').setup ({
-                -- options = { theme = 'gruvbox' }
-                -- options = { theme = 'horizon' }
-                -- options = { theme = 'catppuccin' }
-            })
+            require('lualine').setup {
+                sections = {
+                    lualine_a = {'mode'},
+                    lualine_b = {'branch', 'diff', 'diagnostics'},
+                    lualine_c = {'filename'},
+                    lualine_x = {'lsp_status', 'encoding', 'fileformat', 'filetype'},
+                    lualine_y = {'progress', 'selectioncount', 'searchcount'},
+                    lualine_z = {'location'}
+                }, 
+            }
         end
     },
     {
@@ -119,6 +124,24 @@ return {
         config = function()
             local theme = require("alpha.themes.theta")
             theme.file_icons.provider = "devicons"
+            -- theme.header.val = {
+            --     [[███▄▄▄▄      ▄████████  ▄██████▄   ▄█    █▄   ▄█    ▄▄▄▄███▄▄▄▄  ]], 
+            --     [[███▀▀▀██▄   ███    ███ ███    ███ ███    ███ ███  ▄██▀▀▀███▀▀▀██▄]], 
+            --     [[███   ███   ███    █▀  ███    ███ ███    ███ ███▌ ███   ███   ███]], 
+            --     [[███   ███  ▄███▄▄▄     ███    ███ ███    ███ ███▌ ███   ███   ███]], 
+            --     [[███   ███ ▀▀███▀▀▀     ███    ███ ███    ███ ███▌ ███   ███   ███]], 
+            --     [[███   ███   ███    █▄  ███    ███ ███    ███ ███  ███   ███   ███]], 
+            --     [[███   ███   ███    ███ ███    ███ ███    ███ ███  ███   ███   ███]], 
+            --     [[ ▀█   █▀    ██████████  ▀██████▀   ▀██████▀  █▀    ▀█   ███   █▀ ]], 
+            -- }
+            theme.header.val = {
+                [[▄▄▄    ▄▄▄  ▄▄▄▄▄▄▄   ▄▄▄▄▄   ▄▄▄▄  ▄▄▄▄ ▄▄▄▄▄ ▄▄▄      ▄▄▄]], 
+                [[████▄  ███ ███▀▀▀▀▀ ▄███████▄ ▀███  ███▀  ███  ████▄  ▄████]], 
+                [[███▀██▄███ ███▄▄    ███   ███  ███  ███   ███  ███▀████▀███]], 
+                [[███  ▀████ ███      ███▄▄▄███  ███▄▄███   ███  ███  ▀▀  ███]], 
+                [[███    ███ ▀███████  ▀█████▀    ▀████▀   ▄███▄ ███      ███]], 
+            }
+
             require("alpha").setup(theme.config)
         end,
     },
