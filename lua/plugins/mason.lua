@@ -60,7 +60,6 @@ return {
                     '--header-insertion=iwyu',
                     '--header-insertion-decorators',
                     '--log=verbose',
-                    '--malloc-trim',
                     '--offset-encoding=utf-8',
                     '--pch-storage=disk',
                     '--query-driver=/usr/bin/g++',
