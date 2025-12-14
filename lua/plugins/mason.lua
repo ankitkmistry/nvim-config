@@ -65,7 +65,7 @@ return {
                     '--query-driver=/usr/bin/g++',
                     '--rename-file-limit=0',
                 },
-                root_markers = { 
+                root_markers = {
                     '.clangd',
                     '.clang-tidy',
                     '.clang-format',
@@ -96,7 +96,7 @@ return {
 
             vim.lsp.config('*', {
                 root_markers = { '.git' },
-                on_attach = function(client, bufnr) 
+                on_attach = function(client, bufnr)
                     require("inlay-hints").on_attach(client, bufnr)
                 end,
                 capabilities = {
@@ -107,10 +107,10 @@ return {
                     }
                 }
             })
-            
-            vim.lsp.enable({'clangd', 'rust_analyzer', 'ruff'}, true)
 
-            vim.keymap.set({'n', 'v'}, 'gra', vim.lsp.buf.code_action, { desc = 'Show code actions' })
+            vim.lsp.enable({ 'clangd', 'rust_analyzer', 'ruff' }, true)
+
+            vim.keymap.set({ 'n', 'v' }, 'gra', vim.lsp.buf.code_action, { desc = 'Show code actions' })
             vim.keymap.set('n', 'grd', vim.lsp.buf.definition, { desc = 'Go to definition' })
             vim.keymap.set('n', 'gri', vim.lsp.buf.implementation, { desc = 'Show implementations' })
             vim.keymap.set('n', 'grn', vim.lsp.buf.rename, { desc = 'Rename symbol' })
@@ -119,7 +119,9 @@ return {
             vim.keymap.set('n', 'gO', vim.lsp.buf.document_symbol, { desc = 'List all symbols' })
             vim.keymap.set('i', '<C-s>', vim.lsp.buf.signature_help, { desc = 'Show signature help' })
 
-            vim.keymap.set('n', 'K', vim.lsp.buf.hover, { desc = "Show hover information" })
+            vim.keymap.set('n', 'K', function() 
+                vim.lsp.buf.hover({ border = "rounded" })
+            end, { desc = "Show hover information" })
             vim.keymap.set('n', 'gf', vim.lsp.buf.format, { desc = "Format code" })
 
             -- vim.keymap.set('n', '<leader>grh', function()
