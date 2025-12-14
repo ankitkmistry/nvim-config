@@ -17,6 +17,11 @@ return {
 		opts = {},
 	},
 	{
+		"folke/todo-comments.nvim",
+		dependencies = { "nvim-lua/plenary.nvim" },
+		opts = {},
+	},
+	{
 		"gelguy/wilder.nvim",
 		dependencies = { "romgrk/fzy-lua-native" },
 		config = function()
@@ -172,7 +177,7 @@ return {
 			vim.keymap.set("n", "<leader>cC", crates.open_crates_io, opts)
 			vim.keymap.set("n", "<leader>cL", crates.open_lib_rs, opts)
 
-            crates.setup()
+			crates.setup()
 		end,
 	},
 }
