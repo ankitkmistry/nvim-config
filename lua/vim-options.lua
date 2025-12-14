@@ -46,8 +46,6 @@ vim.g.have_nerd_font = true
 
 -- Take confirmation when doing dangerous tasks
 vim.o.confirm = true
--- Always have rounded borders for popup windows
-vim.o.winborder = "rounded"
 
 -- Enable extended colors
 vim.opt.termguicolors = true
