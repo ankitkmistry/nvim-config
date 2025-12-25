@@ -122,6 +122,22 @@ return {
 		end,
 	},
 	{
+		"rebelot/kanagawa.nvim",
+		lazy = false,
+		priority = 1000,
+		opts = {},
+		config = function()
+			require("kanagawa").setup({
+				transparent = false,
+				background = {
+					dark = "wave",
+					light = "lotus",
+				},
+			})
+			-- vim.cmd.colorscheme("kanagawa")
+		end,
+	},
+	{
 		"goolord/alpha-nvim",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		config = function()
