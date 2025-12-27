@@ -22,8 +22,8 @@ return {
             vim.keymap.set('n', '<leader>fn', '<cmd>Telescope notify<CR>', { desc = 'Show notifications' })
 
             vim.keymap.set('n', '<leader>lr', builtin.lsp_references,           { desc = 'Show [L]SP [R]eferences' })
-            vim.keymap.set('n', '<leader>ld', builtin.lsp_document_symbols,     { desc = 'Show [L]SP [D]ocument symbols' })
-            vim.keymap.set('n', '<leader>lw', builtin.lsp_workspace_symbols,    { desc = 'Show [L]SP [W]orkspace symbols' })
+            vim.keymap.set('n', '<leader>lsd', builtin.lsp_document_symbols,     { desc = 'Show [L]SP [D]ocument symbols' })
+            vim.keymap.set('n', '<leader>lsw', builtin.lsp_workspace_symbols,    { desc = 'Show [L]SP [W]orkspace symbols' })
             vim.keymap.set('n', '<leader>li', builtin.lsp_implementations,      { desc = 'Show [L]SP [I]mplementations' })
             vim.keymap.set('n', '<leader>ld', builtin.lsp_definitions,          { desc = 'Show [L]SP [D]efinitions' })
             vim.keymap.set('n', '<leader>lt', builtin.lsp_type_definitions,     { desc = 'Show [L]SP [T]ype definitions' })
