@@ -5,7 +5,7 @@ vim.wo.relativenumber = true -- Relative line numbers
 
 vim.cmd("syntax on") -- Syntax highlighting
 vim.cmd("filetype plugin indent on") -- Enable filetype detection and indentation
-vim.cmd("set showmatch") -- Show matching brackets
+vim.o.showmatch = true -- Show matching brackets
 
 -- Auto-read files changed outside Vim
 vim.cmd("set autoread")
@@ -27,7 +27,7 @@ vim.o.showcmd = true -- Show typed commands
 vim.o.showcmdloc = "statusline" -- Show commands in status line
 vim.o.laststatus = 2 -- Always show status line
 vim.o.wildmenu = true -- Better auto completion
-vim.o.noswapfile = true -- Disable swap files
+vim.cmd("set noswapfile") -- Disable swap files
 vim.o.history = 1000 -- Keep longer history
 vim.o.clipboard = "unnamedplus" -- Use system clipboard
 
