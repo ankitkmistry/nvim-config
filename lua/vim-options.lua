@@ -1,8 +1,7 @@
-vim.cmd("set nocompatible") -- No comments
 vim.cmd("set encoding=utf-8") -- Set encoding to utf-8
 
-vim.cmd("set number") --  Line numbers
-vim.cmd("set relativenumber") -- Relative line numbers
+vim.wo.number = true --  Line numbers
+vim.wo.relativenumber = true -- Relative line numbers
 
 vim.cmd("syntax on") -- Syntax highlighting
 vim.cmd("filetype plugin indent on") -- Enable filetype detection and indentation
@@ -13,31 +12,31 @@ vim.cmd("set autoread")
 vim.cmd("autocmd FocusGained,BufEnter * checktime")
 
 -- Highlight search results
-vim.cmd("set hlsearch")
-vim.cmd("set incsearch")
+vim.o.hlsearch = true
+vim.o.incsearch = true
 
 -- Case-insensitive search unless uppercase is used
-vim.cmd("set ignorecase")
-vim.cmd("set smartcase")
+vim.o.ignorecase = true
+vim.o.smartcase = true
 
-vim.cmd("set ruler") -- Show ruler (line, col)
-vim.cmd("set mouse=a") -- Enable mouse support
-vim.cmd("set wrap") -- Enable line wrapping
-vim.cmd("set scrolloff=5") -- Keep 5 lines visible when scrolling
-vim.cmd("set showcmd") -- Show typed commands
-vim.cmd("set showcmdloc=statusline") -- Show commands in status line
-vim.cmd("set laststatus=2") -- Always show status line
-vim.cmd("set wildmenu") -- Better auto completion
-vim.cmd("set noswapfile") -- Disable swap files
-vim.cmd("set history=1000") -- Keep longer history
-vim.cmd("set clipboard=unnamedplus") -- Use system clipboard
+vim.o.ruler = true -- Show ruler (line, col)
+vim.o.mouse = "a" -- Enable mouse support
+vim.o.wrap = true -- Enable line wrapping
+vim.o.scrolloff = 5 -- Keep 5 lines visible when scrolling
+vim.o.showcmd = true -- Show typed commands
+vim.o.showcmdloc = "statusline" -- Show commands in status line
+vim.o.laststatus = 2 -- Always show status line
+vim.o.wildmenu = true -- Better auto completion
+vim.o.noswapfile = true -- Disable swap files
+vim.o.history = 1000 -- Keep longer history
+vim.o.clipboard = "unnamedplus" -- Use system clipboard
 
 -- Indentation
-vim.cmd("set tabstop=4") -- Tabs look like 4 spaces
-vim.cmd("set softtabstop=4")
-vim.cmd("set shiftwidth=4") -- Auto-indent uses 4 spaces
-vim.cmd("set expandtab") -- Convert tabs to spaces
-vim.cmd("set smartindent") -- Smart auto-indentation
+vim.o.tabstop = 4 -- Tabs look like 4 spaces
+vim.o.softtabstop = 4
+vim.o.shiftwidth = 4 -- Auto-indent uses 4 spaces
+vim.o.expandtab = true -- Convert tabs to spaces
+vim.o.smartindent = true -- Smart auto-indentation
 
 vim.g.mapleader = " " -- Space as the map leader
 vim.g.maplocalleader = " "
@@ -90,7 +89,7 @@ vim.keymap.set("n", "gcO", "O<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = 
 
 -- Windows
 vim.keymap.set("n", "<leader>ws", "<C-w>s", { desc = "Open horizontal split" })
--- 
+--
 vim.keymap.set("n", "<leader>wv", "<C-w>v", { desc = "Open vertical split" })
 vim.keymap.set("n", "<leader>wc", "<C-w>c", { desc = "Close window" })
 vim.keymap.set("n", "<leader>wq", "<C-w>q", { desc = "Quit window" })
