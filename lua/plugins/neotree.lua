@@ -9,12 +9,12 @@ return {
 	lazy = false, -- neo-tree will lazily load itself
 	config = function()
 		require("neo-tree").setup({
-            -- Sync neo-tree clipboard with neotree instances in the current neovim invocation
+			-- Sync neo-tree clipboard with neotree instances in the current neovim invocation
 			clipboard = {
 				sync = "global",
 			},
 		})
 
-		vim.keymap.set("n", "<leader>ex", ":Neotree filesystem toggle<CR>", { desc = "Open filesystem" })
+		vim.keymap.set("n", "\\", ":Neotree filesystem toggle<CR>", { desc = "Open filesystem" })
 	end,
 }

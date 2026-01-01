@@ -66,7 +66,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	desc = "Highlight when yanking text",
 	group = vim.api.nvim_create_augroup("highlight-yank", { clear = true }),
 	callback = function()
-		vim.highlight.on_yank()
+		vim.hl.on_yank()
 	end,
 })
 
@@ -90,8 +90,10 @@ vim.keymap.set("n", "gcO", "O<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = 
 
 -- Windows
 vim.keymap.set("n", "<leader>ws", "<C-w>s", { desc = "Open horizontal split" })
+-- 
 vim.keymap.set("n", "<leader>wv", "<C-w>v", { desc = "Open vertical split" })
 vim.keymap.set("n", "<leader>wc", "<C-w>c", { desc = "Close window" })
+vim.keymap.set("n", "<leader>wq", "<C-w>q", { desc = "Quit window" })
 vim.keymap.set("n", "<leader>wo", "<C-w>o", { desc = "Close all other windows" })
 
 vim.keymap.set("n", "<leader>ww", "<C-w><C-w>", { desc = "Move to next window" })
@@ -123,11 +125,11 @@ vim.keymap.set("n", "<leader>wF", "<C-w>F", { desc = "Open file at line in new w
 vim.keymap.set("n", "<leader>wt", "<C-w>T", { desc = "Open window in new tab" })
 
 -- Tabs
-vim.keymap.set("n", "tn", "<cmd>tabnew<cr>", { desc = "New tab" })
-vim.keymap.set("n", "te", "<cmd>tabedit<cr>", { desc = "Edit in new tab" })
-vim.keymap.set("n", "tc", "<cmd>tabclose<cr>", { desc = "Close tab" })
-vim.keymap.set("n", "to", "<cmd>tabonly<cr>", { desc = "Close all other tabs" })
-vim.keymap.set("n", "tm", ":tab ", { desc = "Run cmd in new tab" })
+vim.keymap.set("n", "<leader>tn", "<cmd>tabnew<cr>", { desc = "New tab" })
+vim.keymap.set("n", "<leader>te", "<cmd>tabedit<cr>", { desc = "Edit in new tab" })
+vim.keymap.set("n", "<leader>tc", "<cmd>tabclose<cr>", { desc = "Close tab" })
+vim.keymap.set("n", "<leader>to", "<cmd>tabonly<cr>", { desc = "Close all other tabs" })
+vim.keymap.set("n", "<leader>tm", ":tab ", { desc = "Run cmd in new tab" })
 
 -- Back and Forth
 vim.keymap.set("n", "]q", vim.cmd.cnext, { desc = "Next Quickfix" })

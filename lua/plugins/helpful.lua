@@ -4,31 +4,37 @@ return {
 	},
 	{
 		"rcarriga/nvim-notify",
+		config = function()
+			require("notify").setup({
+				render = "compact",
+			})
+		end,
 	},
 	{
 		"dstein64/vim-startuptime",
 	},
 	{
 		"karb94/neoscroll.nvim",
-        -- Disable neoscroll in neovide
-        cond = vim.g.neovide == nil,
+		-- Disable neoscroll in neovide
+		cond = vim.g.neovide == nil,
 		opts = {},
 	},
 	{
 		"sphamba/smear-cursor.nvim",
-        -- Disable smear-cursor in neovide
-        cond = vim.g.neovide == nil,
+		-- Disable smear-cursor in neovide
+		-- cond = vim.g.neovide == nil,
+		cond = false,
 		opts = {
-            stiffness = 0.8,                      -- 0.6      [0, 1]
-            trailing_stiffness = 0.6,             -- 0.45     [0, 1]
-            stiffness_insert_mode = 0.7,          -- 0.5      [0, 1]
-            trailing_stiffness_insert_mode = 0.7, -- 0.5      [0, 1]
-            damping = 0.95,                       -- 0.85     [0, 1]
-            damping_insert_mode = 0.95,           -- 0.9      [0, 1]
-            distance_stop_animating = 0.5,        -- 0.1      > 0
-        },
-    },
-    {
+			stiffness = 0.8, -- 0.6      [0, 1]
+			trailing_stiffness = 0.6, -- 0.45     [0, 1]
+			stiffness_insert_mode = 0.7, -- 0.5      [0, 1]
+			trailing_stiffness_insert_mode = 0.7, -- 0.5      [0, 1]
+			damping = 0.95, -- 0.85     [0, 1]
+			damping_insert_mode = 0.95, -- 0.9      [0, 1]
+			distance_stop_animating = 0.5, -- 0.1      > 0
+		},
+	},
+	{
 		"folke/todo-comments.nvim",
 		dependencies = { "nvim-lua/plenary.nvim" },
 		opts = {},
@@ -67,8 +73,8 @@ return {
 					bottom_search = true, -- use a classic bottom cmdline for search
 					command_palette = true, -- position the cmdline and popupmenu together
 					long_message_to_split = true, -- long messages will be sent to a split
-					inc_rename = false, -- enables an input dialog for inc-rename.nvim
-					lsp_doc_border = false, -- add a border to hover docs and signature help
+					inc_rename = true, -- enables an input dialog for inc-rename.nvim
+					lsp_doc_border = true, -- add a border to hover docs and signature help
 				},
 			})
 		end,
@@ -78,12 +84,8 @@ return {
 		dependencies = { "romgrk/fzy-lua-native" },
 		config = function()
 			local wilder = require("wilder")
-			wilder.setup({
-				modes = { ":", "/", "?" },
-				enter_cmdline_enter = 0, -- Press <Tab> to trigger wilder.nvim
-			})
 			-- Disable Python remote plugin
-			wilder.set_option("use_python_remote_plugin", 0)
+			-- wilder.set_option("use_python_remote_plugin", 1)
 
 			wilder.set_option("pipeline", {
 				wilder.branch(
@@ -114,6 +116,11 @@ return {
 					}),
 				})
 			)
+
+			wilder.setup({
+				modes = { ":", "/", "?" },
+				enter_cmdline_enter = 0, -- Press <Tab> to trigger wilder.nvim
+			})
 		end,
 	},
 	{
