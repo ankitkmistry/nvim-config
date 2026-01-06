@@ -112,7 +112,6 @@ return {
 			vim.lsp.config("*", {
 				root_markers = { ".git" },
 				on_attach = function(client, bufnr)
-					require("inlay-hints").on_attach(client, bufnr)
 				end,
 				capabilities = {
 					textDocument = {
@@ -139,9 +138,9 @@ return {
 			end, { desc = "Show hover information" })
 			vim.keymap.set("n", "gf", vim.lsp.buf.format, { desc = "Format code" })
 
-			-- vim.keymap.set('n', '<leader>grh', function()
-			--     vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-			-- end, { desc = "Toggle Inlay Hints" })
+			vim.keymap.set('n', '<leader>grh', function()
+			    vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+			end, { desc = "Toggle Inlay Hints" })
 
 			-- In insert mode, use CTRL-X CTRL-O to trigger completion
 		end,
