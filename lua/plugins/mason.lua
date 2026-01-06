@@ -59,7 +59,7 @@ return {
 					"--function-arg-placeholders",
 					"--header-insertion=iwyu",
 					"--header-insertion-decorators",
-					"--log=verbose",
+					"--log=error",
 					"--offset-encoding=utf-8",
 					"--pch-storage=disk",
 					"--query-driver=/usr/bin/g++",
@@ -145,9 +145,5 @@ return {
 
 			-- In insert mode, use CTRL-X CTRL-O to trigger completion
 		end,
-	},
-	{
-		"smjonas/inc-rename.nvim",
-		opts = {},
 	},
 }
