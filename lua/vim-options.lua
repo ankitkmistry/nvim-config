@@ -82,7 +82,8 @@ end
 
 -- Keymaps
 vim.keymap.set("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
-vim.keymap.set({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save file" })
+vim.keymap.set("n", "<C-s>", "<cmd>w<cr><esc>", { desc = "Save file" })
+vim.keymap.set("n", "<A-s>", "<cmd>wa<cr><esc>", { desc = "Save all" })
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>", { desc = "Disable search highlighting" })
 vim.keymap.set("n", "gco", "o<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Comment Below" })
 vim.keymap.set("n", "gcO", "O<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Comment Above" })
