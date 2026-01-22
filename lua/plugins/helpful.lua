@@ -3,6 +3,9 @@ return {
 		"tpope/vim-repeat",
 	},
 	{
+		"mg979/vim-visual-multi",
+	},
+	{
 		"rcarriga/nvim-notify",
 		config = function()
 			require("notify").setup({
