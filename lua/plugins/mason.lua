@@ -61,9 +61,10 @@ return {
 					"--header-insertion-decorators",
 					"--log=error",
 					"--offset-encoding=utf-8",
-					"--pch-storage=disk",
-					"--query-driver=/usr/bin/g++",
+					"--pch-storage=memory",
+                    "--malloc-trim",
 					"--rename-file-limit=0",
+                    "-j=2",
 				},
 				root_markers = {
 					".clangd",
