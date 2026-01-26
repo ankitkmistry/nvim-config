@@ -62,7 +62,6 @@ return {
 					"--log=error",
 					"--offset-encoding=utf-8",
 					"--pch-storage=memory",
-                    "--malloc-trim",
 					"--rename-file-limit=0",
                     "-j=2",
 				},
