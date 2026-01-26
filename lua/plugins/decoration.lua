@@ -16,15 +16,15 @@ return {
 	},
 	{
 		"nvim-lualine/lualine.nvim",
-		dependencies = { "nvim-tree/nvim-web-devicons" },
+		dependencies = { "nvim-tree/nvim-web-devicons", "meuter/lualine-so-fancy.nvim" },
 		config = function()
 			require("lualine").setup({
 				sections = {
 					lualine_a = { "mode" },
 					lualine_b = { "branch", "diff", "diagnostics" },
-					lualine_c = { "filename" },
+					lualine_c = { "filename", "fancy_macro" },
 					lualine_x = { "%S", "encoding", "fileformat", "filetype" },
-					lualine_y = { "progress", "selectioncount", "searchcount" },
+					lualine_y = { "progress", "selectioncount" },
 					lualine_z = { "location" },
 				},
 			})

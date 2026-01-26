@@ -5,7 +5,6 @@ return {
         config = function()
             local builtin = require('telescope.builtin')
             vim.keymap.set('n', '<C-p>', builtin.git_files, { desc = 'Search [G]it files' })
-            vim.keymap.set('i', '', '<cmd>Telescope git_files<CR>', { desc = 'Search [G]it files' })
 
             vim.keymap.set('n', '<leader>ph', builtin.help_tags,        { desc = 'Search [H]elp' })
             vim.keymap.set('n', '<leader>pk', builtin.keymaps,          { desc = 'Search [K]eymaps' })
