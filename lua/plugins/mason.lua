@@ -136,7 +136,7 @@ return {
 			vim.keymap.set("n", "K", function()
 				vim.lsp.buf.hover({ border = "rounded" })
 			end, { desc = "Show hover information" })
-			vim.keymap.set("n", "gf", vim.lsp.buf.format, { desc = "Format code" })
+			vim.keymap.set("n", "<leader>f", vim.lsp.buf.format, { desc = "Format code" })
 
 			vim.keymap.set('n', '<leader>grh', function()
 			    vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
