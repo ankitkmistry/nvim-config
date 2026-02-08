@@ -3,6 +3,9 @@ return {
 		"tpope/vim-repeat",
 	},
 	{
+		"tpope/vim-obsession",
+	},
+	{
 		"mg979/vim-visual-multi",
 	},
 	{
