@@ -63,7 +63,7 @@ return {
 					"--offset-encoding=utf-8",
 					"--pch-storage=memory",
 					"--rename-file-limit=0",
-                    "-j=2",
+					"-j=2",
 				},
 				root_markers = {
 					".clangd",
@@ -111,8 +111,7 @@ return {
 
 			vim.lsp.config("*", {
 				root_markers = { ".git" },
-				on_attach = function(client, bufnr)
-				end,
+				on_attach = function(client, bufnr) end,
 				capabilities = {
 					textDocument = {
 						semanticTokens = {
@@ -138,9 +137,12 @@ return {
 			end, { desc = "Show hover information" })
 			vim.keymap.set("n", "<leader>f", vim.lsp.buf.format, { desc = "Format code" })
 
-			vim.keymap.set('n', '<leader>grh', function()
-			    vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+			vim.keymap.set("n", "<leader>grh", function()
+				vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
 			end, { desc = "Toggle Inlay Hints" })
+
+			local builtin = require("telescope.builtin")
+			vim.keymap.set("n", "grs", builtin.lsp_document_symbols, { desc = "Show [L]SP [D]ocument symbols" })
 
 			-- In insert mode, use CTRL-X CTRL-O to trigger completion
 		end,
