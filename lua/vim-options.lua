@@ -22,7 +22,7 @@ vim.o.smartcase = true
 vim.o.ruler = true -- Show ruler (line, col)
 vim.o.mouse = "a" -- Enable mouse support
 vim.o.wrap = true -- Enable line wrapping
-vim.o.scrolloff = 5 -- Keep 5 lines visible when scrolling
+vim.o.scrolloff = 2 -- Keep 2 lines visible when scrolling
 vim.o.showcmd = true -- Show typed commands
 vim.o.showcmdloc = "statusline" -- Show commands in status line
 vim.o.laststatus = 2 -- Always show status line
@@ -52,13 +52,17 @@ vim.opt.showmode = false
 -- Save undo history
 vim.opt.undofile = true
 -- Keep signcolumn on by default
-vim.opt.signcolumn = "yes"
+vim.opt.signcolumn = "auto:1"
 -- Show which line cursor is on
 vim.opt.cursorline = true
--- Help some scrolling
-vim.opt.scrolloff = 10
 -- Help with search highlighting
 vim.opt.hlsearch = true
+-- Fold specific options
+vim.o.foldcolumn = '1'
+vim.o.foldlevel = 99
+vim.o.foldlevelstart = 99
+vim.o.foldenable = true
+vim.o.fillchars = 'eob:~,fold: ,foldopen:,foldsep: ,foldclose:'
 
 -- Highlight when yanking (copying) text
 vim.api.nvim_create_autocmd("TextYankPost", {

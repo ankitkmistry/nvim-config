@@ -6,4 +6,7 @@ return {
 		---@type render.md.UserConfig
 		opts = {},
 	},
+    {
+        "richardbizik/nvim-toc",
+    },
 }
