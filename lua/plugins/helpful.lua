@@ -79,7 +79,7 @@ return {
         -- optional, but required for fuzzy finder support
         dependencies = {
             'nvim-telescope/telescope-fzf-native.nvim',
-            build = 'make'
+            build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release --target install'
         },
         config = function()
             local dropbar_api = require('dropbar.api')
@@ -95,7 +95,7 @@ return {
         config = function()
             local wilder = require("wilder")
             -- Disable Python remote plugin
-            -- wilder.set_option("use_python_remote_plugin", 1)
+            wilder.set_option("use_python_remote_plugin", 0)
 
             wilder.set_option("pipeline", {
                 wilder.branch(
