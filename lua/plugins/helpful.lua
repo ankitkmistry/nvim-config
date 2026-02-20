@@ -1,11 +1,22 @@
 return {
     {
+        -- This plugin provides PEG grammar files support
+        "taeber/vim-peg",
+    },
+    {
         -- This plugin enhances the . command by allowing other custom commands to run
         "tpope/vim-repeat",
     },
     {
         -- This plugin manages vim sessions
         "tpope/vim-obsession",
+    },
+    {
+        -- A plugin to align text like emacs align-regexp
+        "junegunn/vim-easy-align",
+        config = function()
+            vim.keymap.set({ 'n', 'x' }, 'ga', '<Plug>(EasyAlign)', { desc = 'Start easy-align' })
+        end,
     },
     {
         -- A broken plugin to use multi cursors
@@ -79,7 +90,8 @@ return {
         -- optional, but required for fuzzy finder support
         dependencies = {
             'nvim-telescope/telescope-fzf-native.nvim',
-            build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release --target install'
+            build =
+            'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release --target install'
         },
         config = function()
             local dropbar_api = require('dropbar.api')
