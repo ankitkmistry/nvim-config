@@ -1,100 +1,163 @@
-vim.cmd("set encoding=utf-8") -- Set encoding to utf-8
-
-vim.wo.number = true --  Line numbers
-vim.wo.relativenumber = true -- Relative line numbers
-
-vim.cmd("syntax on") -- Syntax highlighting
-vim.cmd("filetype plugin indent on") -- Enable filetype detection and indentation
-vim.o.showmatch = true -- Show matching brackets
-
--- Auto-read files changed outside Vim
-vim.cmd("set autoread")
-vim.cmd("autocmd FocusGained,BufEnter * checktime")
-
--- Highlight search results
-vim.o.hlsearch = true
-vim.o.incsearch = true
-
--- Case-insensitive search unless uppercase is used
-vim.o.ignorecase = true
-vim.o.smartcase = true
-
-vim.o.ruler = true -- Show ruler (line, col)
-vim.o.mouse = "a" -- Enable mouse support
-vim.o.wrap = true -- Enable line wrapping
-vim.o.scrolloff = 2 -- Keep 2 lines visible when scrolling
-vim.o.showcmd = true -- Show typed commands
-vim.o.showcmdloc = "statusline" -- Show commands in status line
-vim.o.laststatus = 2 -- Always show status line
-vim.o.wildmenu = true -- Better auto completion
-vim.cmd("set noswapfile") -- Disable swap files
-vim.o.history = 1000 -- Keep longer history
-vim.o.clipboard = "unnamedplus" -- Use system clipboard
-
--- Indentation
-vim.o.tabstop = 4 -- Tabs look like 4 spaces
-vim.o.softtabstop = 4
-vim.o.shiftwidth = 4 -- Auto-indent uses 4 spaces
-vim.o.expandtab = true -- Convert tabs to spaces
-vim.o.smartindent = true -- Smart auto-indentation
-
-vim.g.mapleader = " " -- Space as the map leader
-vim.g.maplocalleader = " "
-vim.g.have_nerd_font = true
-
--- Take confirmation when doing dangerous tasks
-vim.o.confirm = true
-
 -- Enable extended colors
 vim.opt.termguicolors = true
--- Do not show mode, since it is already shown in the status line
-vim.opt.showmode = false
--- Save undo history
-vim.opt.undofile = true
--- Keep signcolumn on by default
-vim.opt.signcolumn = "auto:1"
--- Show which line cursor is on
-vim.opt.cursorline = true
--- Help with search highlighting
-vim.opt.hlsearch = true
--- Fold specific options
-vim.o.foldcolumn = '1'
+-- I have a nerd font
+vim.g.have_nerd_font = true
+
+-- ========================================================
+-- OPTIONS
+-- ========================================================
+-- Line, cursor and scrolling
+vim.wo.number = true         -- Line numbers
+vim.wo.relativenumber = true -- Relative line numbers
+vim.opt.cursorline = true    -- Show which line cursor is on
+vim.o.wrap = true            -- Enable line wrapping
+vim.o.scrolloff = 4          -- Keep 4 lines visible when scrolling
+vim.o.sidescrolloff = 8      -- Keep 8 cols visible when side scrolling
+
+-- Indentation
+vim.o.tabstop = 4        -- Tabs look like 4 spaces
+vim.o.softtabstop = 4    -- No tabs on tab/backspace
+vim.o.shiftwidth = 4     -- Auto-indent uses 4 spaces
+vim.o.expandtab = true   -- Convert tabs to spaces
+vim.o.smartindent = true -- Smart auto-indentation
+vim.o.autoindent = true  -- Copy indent from current line
+
+-- Searching
+vim.o.ignorecase = true -- Ignore case
+vim.o.smartcase = true  -- Unless uppercase is used
+vim.o.hlsearch = true   -- Highlight search results
+vim.o.incsearch = true  -- Do incremental search
+
+-- Window options
+vim.o.signcolumn = "auto:1" -- Keep signcolumn on by default
+-- vim.o.colorcolumn = "150"   -- Show a visual line at column 100
+vim.o.showmatch = true      -- Show matching brackets
+vim.o.showmode = false -- Do not show mode status line already has it
+vim.o.pumheight = 6    -- Popup menu height
+vim.o.pumblend = 10    -- Popup menu transparency
+-- vim.o.winblend = 10         -- Floating window transparency
+vim.o.conceallevel = 0 -- Do not use conceal feature
+vim.o.concealcursor = ""
+vim.o.fillchars = "eob:~,fold: ,foldopen:,foldsep: ,foldclose:"
+vim.opt.diffopt:append("linematch:60") -- Improve diff display
+
+-- Backup options
+vim.opt.backup = false      -- Do not create backup file
+vim.opt.writebackup = false -- Do not write to backup file
+vim.opt.swapfile = false    -- Do not create swapfile
+vim.opt.undofile = true     -- Save undo history
+vim.opt.autoread = true     -- Auto reload changes to a file
+vim.opt.autowrite = false   -- Do not auto save
+
+-- Key event options
+vim.o.updatetime = 300  -- Faster completion
+vim.o.ttimeoutlen = 500 -- Key code timeout
+
+-- Folding
+vim.o.foldcolumn = "1"
 vim.o.foldlevel = 99
 vim.o.foldlevelstart = 99
 vim.o.foldenable = true
-vim.o.fillchars = 'eob:~,fold: ,foldopen:,foldsep: ,foldclose:'
 
--- Highlight when yanking (copying) text
+-- Command line
+vim.o.wildmenu = true                -- Enable command line completion
+vim.o.wildmode = "longest:full,full" -- Wildmenu opts
+vim.o.history = 1000                 -- Keep longer history
+
+-- Status line
+vim.o.ruler = true              -- Show ruler (line, col)
+vim.o.showcmd = true            -- Show typed commands
+vim.o.showcmdloc = "statusline" -- Show commands in status line
+vim.o.laststatus = 2            -- Always show status line
+
+-- Other options
+vim.opt.encoding = "utf-8"              -- Set encoding to utf-8
+vim.opt.hidden = true                   -- Allow hidden buffers
+vim.opt.backspace = "indent,eol,start"  -- Better backspace behaviour
+vim.opt.autochdir = false               -- Do not auto change directories
+vim.opt.path:append("**")               -- Include subdirs in "gf" and "gF" command search
+vim.opt.selection = "inclusive"         -- Include last character in selection
+vim.opt.mouse = "a"                     -- Enable mouse support
+vim.opt.clipboard:append("unnamedplus") -- Use system clipboard
+vim.opt.maxmempattern = 20000           -- Let nvim use more memory
+vim.opt.confirm = true                  -- Take confirmation when doing dangerous tasks
+
+vim.cmd("syntax on")                    -- Syntax highlighting
+vim.cmd("filetype plugin indent on")    -- Enable filetype detection and indentation
+
+-- Space as the map leader
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+
+-- ========================================================
+-- AUTOCMDS
+-- ========================================================
+local augroup = vim.api.nvim_create_augroup("UserConfig", { clear = true })
+
+-- Highlight when yanking text
 vim.api.nvim_create_autocmd("TextYankPost", {
-	desc = "Highlight when yanking text",
-	group = vim.api.nvim_create_augroup("highlight-yank", { clear = true }),
-	callback = function()
-		vim.hl.on_yank()
-	end,
+    desc = "Highlight when yanking text",
+    group = augroup,
+    callback = function()
+        vim.hl.on_yank()
+    end,
 })
 
--- diagnostic
-local diagnostic_goto = function(next, severity)
-	return function()
-		vim.diagnostic.jump({
-			count = (next and 1 or -1) * vim.v.count1,
-			severity = severity and vim.diagnostic.severity[severity] or nil,
-			float = true,
-		})
-	end
-end
+-- Return to last cursor position
+vim.api.nvim_create_autocmd("BufReadPost", {
+    desc = "Restore last cursor position",
+    group = augroup,
+    callback = function()
+        -- Do not use in diff mode
+        if vim.o.diff then return end
+        -- (row, col)
+        local last_pos = vim.api.nvim_buf_get_mark(0, '"')
+        local last_line = vim.api.nvim_buf_line_count(0)
+        -- Get the line and check if it is correct
+        local row = last_pos[1]
+        if row < 1 or row > last_line then return end
+        -- Set the cursor
+        pcall(vim.api.nvim_win_set_cursor, 0, last_pos)
+    end,
+})
 
--- Keymaps
+-- ========================================================
+-- KEYMAPS
+-- ========================================================
+-- Essential
 vim.keymap.set("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
 vim.keymap.set("n", "<C-s>", "<cmd>w<cr><esc>", { desc = "Save file" })
 vim.keymap.set("n", "<A-s>", "<cmd>wa<cr><esc>", { desc = "Save all" })
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>", { desc = "Disable search highlighting" })
+
+-- Pasting and deleting without yanking
+vim.keymap.set("x", "<leader>p", '"_dP', { desc = "Paste without yanking" })
+vim.keymap.set({ "n", "v" }, "<leader>x", '"_d', { desc = "Delete without yanking" })
+
+-- Comments
 vim.keymap.set("n", "gco", "o<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Comment Below" })
 vim.keymap.set("n", "gcO", "O<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Comment Above" })
 
+-- Buffers
+vim.keymap.set("n", "gb", "<cmd>bnext<CR>", { desc = "Go to next buffer" })
+vim.keymap.set("n", "gB", "<cmd>bprev<CR>", { desc = "Go to previous buffer" })
+
+vim.api.nvim_create_user_command("BufOnly", function()
+    vim.cmd('%bdelete | edit # | normal `"')
+end, { desc = "Close all other buffers" })
+vim.keymap.set("n", "<leader>bo", "<cmd>BufOnly<CR>", { desc = "Close all other buffers" })
+
+-- Indenting
+vim.keymap.set("v", "<", "<gv", { desc = "Indent left and reselect" })
+vim.keymap.set("v", ">", ">gv", { desc = "Indent right and reselect" })
+
 -- Windows
+vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Move to up window" })
+vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Move to down window" })
+vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Move to left window" })
+vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Move to right window" })
+
 vim.keymap.set("n", "<leader>ws", "<C-w>s", { desc = "Open horizontal split" })
---
 vim.keymap.set("n", "<leader>wv", "<C-w>v", { desc = "Open vertical split" })
 vim.keymap.set("n", "<leader>wc", "<C-w>c", { desc = "Close window" })
 vim.keymap.set("n", "<leader>wq", "<C-w>q", { desc = "Quit window" })
@@ -119,7 +182,7 @@ vim.keymap.set("n", "<leader>wL", "<C-w>L", { desc = "Move window right" })
 
 vim.keymap.set("n", "<leader>w=", "<C-w>=", { desc = "Make windows equal size" })
 vim.keymap.set("n", "<leader>w|", "<C-w>|", { desc = "Max window width" })
-vim.keymap.set("n", "<leader>w_", "<C-w>_", { desc = "Make windows height" })
+vim.keymap.set("n", "<leader>w_", "<C-w>_", { desc = "Max window height" })
 vim.keymap.set("n", "<leader>w<", "<C-w><", { desc = "Decrease window width" })
 vim.keymap.set("n", "<leader>w>", "<C-w>>", { desc = "Increase window width" })
 vim.keymap.set("n", "<leader>w+", "<C-w>+", { desc = "Decrease window height" })
@@ -137,9 +200,23 @@ vim.keymap.set("n", "<leader>tc", "<cmd>tabclose<cr>", { desc = "Close tab" })
 vim.keymap.set("n", "<leader>to", "<cmd>tabonly<cr>", { desc = "Close all other tabs" })
 vim.keymap.set("n", "<leader>tm", ":tab ", { desc = "Run cmd in new tab" })
 
+-- Terminal
+vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
+
 -- Back and Forth
 vim.keymap.set("n", "]q", vim.cmd.cnext, { desc = "Next Quickfix" })
 vim.keymap.set("n", "[q", vim.cmd.cprev, { desc = "Previous Quickfix" })
+
+-- Diagnostics
+local diagnostic_goto = function(next, severity)
+    return function()
+        vim.diagnostic.jump({
+            count = (next and 1 or -1) * vim.v.count1,
+            severity = severity and vim.diagnostic.severity[severity] or nil,
+            float = true,
+        })
+    end
+end
 
 vim.keymap.set("n", "]d", diagnostic_goto(true), { desc = "Next diagnostic" })
 vim.keymap.set("n", "[d", diagnostic_goto(false), { desc = "Previous diagnostic" })
@@ -149,11 +226,8 @@ vim.keymap.set("n", "]w", diagnostic_goto(true, "WARN"), { desc = "Next warning"
 vim.keymap.set("n", "[w", diagnostic_goto(false, "WARN"), { desc = "Previous warning" })
 
 vim.keymap.set("n", "]t", function()
-	require("todo-comments").jump_next()
+    require("todo-comments").jump_next()
 end, { desc = "Next todo comment" })
 vim.keymap.set("n", "[t", function()
-	require("todo-comments").jump_prev()
+    require("todo-comments").jump_prev()
 end, { desc = "Previous todo comment" })
-
--- Terminal
-vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
