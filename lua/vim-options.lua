@@ -32,11 +32,11 @@ vim.o.incsearch = true  -- Do incremental search
 vim.o.signcolumn = "auto:1" -- Keep signcolumn on by default
 -- vim.o.colorcolumn = "150"   -- Show a visual line at column 100
 vim.o.showmatch = true      -- Show matching brackets
-vim.o.showmode = false -- Do not show mode status line already has it
-vim.o.pumheight = 6    -- Popup menu height
-vim.o.pumblend = 10    -- Popup menu transparency
+vim.o.showmode = false      -- Do not show mode status line already has it
+vim.o.pumheight = 6         -- Popup menu height
+vim.o.pumblend = 10         -- Popup menu transparency
 -- vim.o.winblend = 10         -- Floating window transparency
-vim.o.conceallevel = 0 -- Do not use conceal feature
+vim.o.conceallevel = 0      -- Do not use conceal feature
 vim.o.concealcursor = ""
 vim.o.fillchars = "eob:~,fold: ,foldopen:,foldsep: ,foldclose:"
 vim.opt.diffopt:append("linematch:60") -- Improve diff display
@@ -71,19 +71,20 @@ vim.o.showcmdloc = "statusline" -- Show commands in status line
 vim.o.laststatus = 2            -- Always show status line
 
 -- Other options
-vim.opt.encoding = "utf-8"              -- Set encoding to utf-8
-vim.opt.hidden = true                   -- Allow hidden buffers
-vim.opt.backspace = "indent,eol,start"  -- Better backspace behaviour
-vim.opt.autochdir = false               -- Do not auto change directories
-vim.opt.path:append("**")               -- Include subdirs in "gf" and "gF" command search
-vim.opt.selection = "inclusive"         -- Include last character in selection
-vim.opt.mouse = "a"                     -- Enable mouse support
-vim.opt.clipboard:append("unnamedplus") -- Use system clipboard
-vim.opt.maxmempattern = 20000           -- Let nvim use more memory
-vim.opt.confirm = true                  -- Take confirmation when doing dangerous tasks
+vim.opt.viewoptions = { "folds", "cursor" } -- Save only folds in :mkview and :loadview
+vim.opt.encoding = "utf-8"                  -- Set encoding to utf-8
+vim.opt.hidden = true                       -- Allow hidden buffers
+vim.opt.backspace = "indent,eol,start"      -- Better backspace behaviour
+vim.opt.autochdir = false                   -- Do not auto change directories
+vim.opt.path:append("**")                   -- Include subdirs in "gf" and "gF" command search
+vim.opt.selection = "inclusive"             -- Include last character in selection
+vim.opt.mouse = "a"                         -- Enable mouse support
+vim.opt.clipboard:append("unnamedplus")     -- Use system clipboard
+vim.opt.maxmempattern = 20000               -- Let nvim use more memory
+vim.opt.confirm = true                      -- Take confirmation when doing dangerous tasks
 
-vim.cmd("syntax on")                    -- Syntax highlighting
-vim.cmd("filetype plugin indent on")    -- Enable filetype detection and indentation
+vim.cmd("syntax on")                        -- Syntax highlighting
+vim.cmd("filetype plugin indent on")        -- Enable filetype detection and indentation
 
 -- Space as the map leader
 vim.g.mapleader = " "
@@ -119,6 +120,19 @@ vim.api.nvim_create_autocmd("BufReadPost", {
         -- Set the cursor
         pcall(vim.api.nvim_win_set_cursor, 0, last_pos)
     end,
+})
+
+-- Save fold state
+vim.api.nvim_create_autocmd("BufWinLeave", {
+    group = augroup,
+    pattern = { "*" },
+    command = "silent! mkview",
+})
+-- Load fold state
+vim.api.nvim_create_autocmd("BufWinEnter", {
+    group = augroup,
+    pattern = { "*" },
+    command = "silent! loadview",
 })
 
 -- ========================================================
