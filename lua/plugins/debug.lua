@@ -93,7 +93,6 @@ return {
 		}
 
 		merge_tables(dap.configurations.c, dap.configurations.cpp)
-		merge_tables(dap.configurations.rust, dap.configurations.cpp)
 
 		require("mason-nvim-dap").setup({
 			automatic_installation = true,
