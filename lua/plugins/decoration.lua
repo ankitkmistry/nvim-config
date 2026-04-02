@@ -53,7 +53,7 @@ return {
                 },
                 transparent_background = true, -- disables setting the background color.
                 float = {
-                    transparent = true,        -- enable transparent floating windows
+                    transparent = false,        -- enable transparent floating windows
                     rounded = true,
                     -- solid = false, -- use solid styling for floating windows, see |winborder|
                 },
@@ -98,7 +98,6 @@ return {
                     notify = true,
                 },
             })
-
             -- setup must be called before loading
             vim.cmd.colorscheme "catppuccin"
         end,
