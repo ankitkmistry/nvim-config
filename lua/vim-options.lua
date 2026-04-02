@@ -38,7 +38,7 @@ vim.o.pumblend = 10         -- Popup menu transparency
 -- vim.o.winblend = 10         -- Floating window transparency
 vim.o.conceallevel = 0      -- Do not use conceal feature
 vim.o.concealcursor = ""
-vim.o.fillchars = "eob:~,fold: ,foldopen:,foldsep: ,foldclose:"
+vim.o.fillchars = "eob: ,fold: ,foldopen:,foldsep: ,foldclose:"
 vim.opt.diffopt:append("linematch:60") -- Improve diff display
 
 -- Backup options
