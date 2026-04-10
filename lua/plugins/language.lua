@@ -56,7 +56,6 @@ return {
 
             vim.lsp.config("*", {
                 root_markers = { ".git" },
-                on_attach = function(client, bufnr) end,
                 capabilities = {
                     textDocument = {
                         semanticTokens = {
@@ -76,10 +75,7 @@ return {
             vim.keymap.set("n", "grt", vim.lsp.buf.type_definition, { desc = "Show type defintion" })
             vim.keymap.set("n", "gO", vim.lsp.buf.document_symbol, { desc = "List all symbols" })
             vim.keymap.set("i", "<C-s>", vim.lsp.buf.signature_help, { desc = "Show signature help" })
-
-            vim.keymap.set("n", "K", function()
-                vim.lsp.buf.hover({ border = "rounded" })
-            end, { desc = "Show hover information" })
+            vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Show hover information" })
             vim.keymap.set("n", "<leader>f", vim.lsp.buf.format, { desc = "Format code" })
 
             vim.keymap.set("n", "<leader>grh", function()
